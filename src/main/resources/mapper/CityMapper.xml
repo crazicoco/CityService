@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhaoyangyingmu.city.dao.CityDao">
+    <resultMap id="BaseResultMap" type="com.zhaoyangyingmu.city.entity.City">
+        <result column="id" property="id" />
+        <result column="province_id" property="province_id" />
+        <result column="city_name" property="city_name" />
+        <result column="description" property="description" />
+    </resultMap>
+
+    <parameterMap id="City" type="com.zhaoyangyingmu.city.entity.City"/>
+
+    <sql id="Base_Column_List">
+		id, province_id, city_name, description
+	</sql>
+
+    <select id="findByName" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List" />
+        from city
+        where city_name = #{cityName}
+    </select>
+
+    <select id="getAllCities" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from city
+    </select>
+
+    <select id="searchCitiesByCityName" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List" />
+        from city
+        where city_name like #{cityName}
+    </select>
+
+    <insert id="insertCity">
+        insert into city
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+          NULL, #{province_id, jdbcType=INTEGER}, #{city_name,jdbcType=VARCHAR}, #{description, jdbcType=VARCHAR}
+        </trim>
+    </insert>
+
+</mapper>
