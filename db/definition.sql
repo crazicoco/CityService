@@ -1,6 +1,8 @@
-DROP TABLE IF EXISTS city;
+CREATE DATABASE IF NOT EXISTS city;
 
-CREATE TABLE city (
+USE city;
+
+CREATE TABLE IF NOT EXISTS city (
   id INT(10) NOT NULL AUTO_INCREMENT,
   province_id INT(10) NOT NULL,
   city_name varchar(100),
