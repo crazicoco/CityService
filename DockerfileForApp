@@ -1,4 +1,0 @@
-FROM java:8
-COPY CityService.jar /CityService.jar
-
-CMD ["java", "-jar", "/CityService.jar"]
